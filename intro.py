@@ -6,6 +6,9 @@ import match
 class TenisTest(unittest.TestCase):
     def setUp(self):
         self.john = player.Player('John')
+        self.rafa = player.Player('Rafa')
+        self.RolandGarros = match.Match()
+
         '''Verify environment is setup properly'''  # Printed if test fails
         pass
 
@@ -32,6 +35,11 @@ class TenisTest(unittest.TestCase):
 
     def test_new_match(self):
         RolandGarros = match.Match()
+
+    def test_add_player(self):
+        self.RolandGarros.addPlayer(self.john)
+
+        self.assertEqual(self.RolandGarros.countPlayers(), 1)
 
 if __name__ == '__main__':
     unittest.main()
