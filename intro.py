@@ -23,15 +23,15 @@ class TenisTest(unittest.TestCase):
         self.assertEqual(self.john.name, 'John')
 
     def test_inital_score(self):
-        self.assertEqual(self.john.score, 0)
+        self.assertEqual(self.john.getScore(), 0)
 
     def test_win_point(self):
         self.john.winPoint()
-        self.assertEqual(self.john.score, 15)
+        self.assertEqual(self.john.getScore(), 15)
         self.john.winPoint()
-        self.assertEqual(self.john.score, 30)
+        self.assertEqual(self.john.getScore(), 30)
         self.john.winPoint()
-        self.assertEqual(self.john.score, 40)
+        self.assertEqual(self.john.getScore(), 40)
 
     def test_new_match(self):
         RolandGarros = match.Match()

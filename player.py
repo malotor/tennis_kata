@@ -3,8 +3,10 @@ class Player:
 
     def __init__(self, name):
         self.name = name
+
     def getScore(self):
-        return self.score;
+        return self.score
+
     def winPoint(self):
         if self.score == 0:
             self.score = 15
