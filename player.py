@@ -5,4 +5,9 @@ class Player:
         self.name = name
 
     def winPoint(self):
-        self.score = 15
+        if self.score == 0:
+            self.score = 15
+        elif self.score == 15:
+            self.score = 30
+        elif self.score == 30:
+            self.score = 40

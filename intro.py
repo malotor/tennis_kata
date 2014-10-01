@@ -24,6 +24,10 @@ class TenisTest(unittest.TestCase):
     def test_win_point(self):
         self.john.winPoint()
         self.assertEqual(self.john.score, 15)
+        self.john.winPoint()
+        self.assertEqual(self.john.score, 30)
+        self.john.winPoint()
+        self.assertEqual(self.john.score, 40)
 
 if __name__ == '__main__':
     unittest.main()
