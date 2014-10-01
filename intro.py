@@ -41,6 +41,10 @@ class TenisTest(unittest.TestCase):
 
         self.assertEqual(self.RolandGarros.countPlayers(), 1)
 
+        self.RolandGarros.addPlayer(self.rafa)
+
+        self.assertEqual(self.RolandGarros.countPlayers(), 2)
+
 if __name__ == '__main__':
     unittest.main()
 

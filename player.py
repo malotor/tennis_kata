@@ -1,16 +1,13 @@
 class Player:
-    score = 0
+
+    scores = [ 0 , 15 , 30 , 40 ]
+    currentScore = 0
 
     def __init__(self, name):
         self.name = name
 
     def getScore(self):
-        return self.score
+        return self.scores[self.currentScore]
 
     def winPoint(self):
-        if self.score == 0:
-            self.score = 15
-        elif self.score == 15:
-            self.score = 30
-        elif self.score == 30:
-            self.score = 40
+        self.currentScore = self.currentScore + 1
