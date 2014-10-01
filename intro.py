@@ -1,5 +1,6 @@
 import unittest
 import player
+import match
 
 # The following is the class in which all functions will be ran by unittest
 class TenisTest(unittest.TestCase):
@@ -28,6 +29,9 @@ class TenisTest(unittest.TestCase):
         self.assertEqual(self.john.score, 30)
         self.john.winPoint()
         self.assertEqual(self.john.score, 40)
+
+    def test_new_match(self):
+        RolandGarros = match.Match()
 
 if __name__ == '__main__':
     unittest.main()
