@@ -4,6 +4,7 @@ import player
 # The following is the class in which all functions will be ran by unittest
 class TenisTest(unittest.TestCase):
     def setUp(self):
+        self.john = player.Player('John')
         '''Verify environment is setup properly'''  # Printed if test fails
         pass
 
@@ -15,13 +16,14 @@ class TenisTest(unittest.TestCase):
 
     # Functions beginning with "test" will be ran as a unit test.
     def test_create_plater(self):
-        john = player.Player('John')
-        self.assertEqual(john.name, 'John')
+        self.assertEqual(self.john.name, 'John')
 
     def test_inital_score(self):
-        john = player.Player('John')
-        self.assertEqual(john.score, 0)
+        self.assertEqual(self.john.score, 0)
 
+    def test_win_point(self):
+        self.john.winPoint()
+        self.assertEqual(self.john.score, 15)
 
 if __name__ == '__main__':
     unittest.main()
