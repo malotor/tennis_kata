@@ -47,9 +47,13 @@ class TenisTest(unittest.TestCase):
 
     def test_win_point(self):
 
-        self.RolandGarros.winPoint(0)
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
 
-        self.assertEqual(self.john.getScore(), 15)
+        self.assertEqual(self.RolandGarros.getPlayer(self.RolandGarros.PLAYER1).getScore(), 15)
+
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
+
+        self.assertEqual(self.RolandGarros.getPlayer(self.RolandGarros.PLAYER1).getScore(), 30)
 
 
 
