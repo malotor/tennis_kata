@@ -10,8 +10,11 @@ class Match:
     def countPlayers(self):
         return len(self.players)
 
-    def winPoint(self, playerIndex):
-        self.players[playerIndex].incrementScore()
+    def winPoint(self, player):
+        self.players[player].incrementScore()
 
-    def getPlayer(self,playerIndex):
-        return self.players[playerIndex]
+    def getPlayer(self,player):
+        return self.players[player]
+
+    def getScore(self,player):
+        return self.players[player].getScore()

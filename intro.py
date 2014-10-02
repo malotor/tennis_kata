@@ -1,13 +1,14 @@
 import unittest
-import player
-import match
+from player import Player
+from match import Match
+from mock import Mock
 
 # The following is the class in which all functions will be ran by unittest
 class TenisTest(unittest.TestCase):
     def setUp(self):
-        self.john = player.Player('John')
-        self.rafa = player.Player('Rafa')
-        self.RolandGarros = match.Match()
+        self.john = Player('John')
+        self.rafa = Player('Rafa')
+        self.RolandGarros = Match()
 
         '''Verify environment is setup properly'''  # Printed if test fails
         pass
@@ -49,13 +50,32 @@ class TenisTest(unittest.TestCase):
 
         self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
 
-        self.assertEqual(self.RolandGarros.getPlayer(self.RolandGarros.PLAYER1).getScore(), 15)
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 15)
 
         self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
 
-        self.assertEqual(self.RolandGarros.getPlayer(self.RolandGarros.PLAYER1).getScore(), 30)
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 30)
+
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
+
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 40)
+
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 15)
+
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 30)
+
+        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+
+        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 40)
 
 
+    def test_win_match(self):
+        john = Mock( {"getScore" : "15"} )
+        self.assertEqual(self.john.getScore(), 15)
 
 if __name__ == '__main__':
     unittest.main()
