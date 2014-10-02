@@ -9,5 +9,5 @@ class Player:
     def getScore(self):
         return self.scores[self.currentScore]
 
-    def winPoint(self):
+    def incrementScore(self):
         self.currentScore = self.currentScore + 1

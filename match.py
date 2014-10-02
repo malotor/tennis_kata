@@ -6,3 +6,6 @@ class Match:
 
     def countPlayers(self):
         return len(self.players)
+
+    def winPoint(self, playerIndex):
+        self.players[playerIndex].incrementScore()

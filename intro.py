@@ -25,12 +25,12 @@ class TenisTest(unittest.TestCase):
     def test_inital_score(self):
         self.assertEqual(self.john.getScore(), 0)
 
-    def test_win_point(self):
-        self.john.winPoint()
+    def test_increment_score(self):
+        self.john.incrementScore()
         self.assertEqual(self.john.getScore(), 15)
-        self.john.winPoint()
+        self.john.incrementScore()
         self.assertEqual(self.john.getScore(), 30)
-        self.john.winPoint()
+        self.john.incrementScore()
         self.assertEqual(self.john.getScore(), 40)
 
     def test_new_match(self):
@@ -44,6 +44,14 @@ class TenisTest(unittest.TestCase):
         self.RolandGarros.addPlayer(self.rafa)
 
         self.assertEqual(self.RolandGarros.countPlayers(), 2)
+
+    def test_win_point(self):
+
+        self.RolandGarros.winPoint(0)
+
+        self.assertEqual(self.john.getScore(), 15)
+
+
 
 if __name__ == '__main__':
     unittest.main()
