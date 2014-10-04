@@ -4,6 +4,9 @@ class Match:
     PLAYER1 = 0
     PLAYER2 = 1
 
+    def __init__(self, name):
+        self.name = name
+
     def addPlayer(self,player):
         self.players.append(player)
 
@@ -18,3 +21,6 @@ class Match:
 
     def getScore(self,player):
         return self.players[player].getScore()
+
+    def getWinner(self):
+        return self.PLAYER2

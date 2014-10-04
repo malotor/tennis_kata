@@ -2,80 +2,93 @@ import unittest
 from player import Player
 from match import Match
 from mock import Mock
+import sys
 
 # The following is the class in which all functions will be ran by unittest
 class TenisTest(unittest.TestCase):
-    def setUp(self):
-        self.john = Player('John')
-        self.rafa = Player('Rafa')
-        self.RolandGarros = Match()
 
-        '''Verify environment is setup properly'''  # Printed if test fails
-        pass
-
-    # The function "tearDown" will always be ran in order to cleanup the
-    # test environment after all the tests have run.
-    def tearDown(self):
-        '''Verify environment is tore down properly'''  # Printed if test fails
-        pass
 
     # Functions beginning with "test" will be ran as a unit test.
     def test_create_plater(self):
-        self.assertEqual(self.john.name, 'John')
+        john = Player('John')
+        self.assertEqual(john.name, 'John')
 
     def test_inital_score(self):
-        self.assertEqual(self.john.getScore(), 0)
+        john = Player('John')
+        self.assertEqual(john.getScore(), 0)
 
     def test_increment_score(self):
-        self.john.incrementScore()
-        self.assertEqual(self.john.getScore(), 15)
-        self.john.incrementScore()
-        self.assertEqual(self.john.getScore(), 30)
-        self.john.incrementScore()
-        self.assertEqual(self.john.getScore(), 40)
+        john = Player('John')
+        john.incrementScore()
+        self.assertEqual(john.getScore(), 15)
+        john.incrementScore()
+        self.assertEqual(john.getScore(), 30)
+        john.incrementScore()
+        self.assertEqual(john.getScore(), 40)
 
     def test_new_match(self):
-        RolandGarros = match.Match()
+        RolandGarros = Match("Roland Garros")
+        self.assertEqual(RolandGarros.name, 'Roland Garros')
 
     def test_add_player(self):
-        self.RolandGarros.addPlayer(self.john)
+        john = Player('John')
+        RolandGarros = Match("Roland Garros")
+        RolandGarros.addPlayer(john)
 
-        self.assertEqual(self.RolandGarros.countPlayers(), 1)
+        self.assertEqual(RolandGarros.countPlayers(), 1)
 
-        self.RolandGarros.addPlayer(self.rafa)
+        rafa = Player('Rafa')
+        RolandGarros.addPlayer(rafa)
 
-        self.assertEqual(self.RolandGarros.countPlayers(), 2)
+        self.assertEqual(RolandGarros.countPlayers(), 2)
 
     def test_win_point(self):
+        john = Player('John')
+        rafa = Player('Rafa')
+        RolandGarros = Match("Roland Garros")
+        RolandGarros.addPlayer(john)
+        RolandGarros.addPlayer(rafa)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
+        RolandGarros.winPoint(Match.PLAYER1)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 15)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER1), 15)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
+        RolandGarros.winPoint(Match.PLAYER1)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 30)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER1), 30)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER1)
+        RolandGarros.winPoint(Match.PLAYER1)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER1), 40)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER1), 40)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+        RolandGarros.winPoint(Match.PLAYER2)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 15)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER2), 15)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+        RolandGarros.winPoint(Match.PLAYER2)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 30)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER2), 30)
 
-        self.RolandGarros.winPoint(self.RolandGarros.PLAYER2)
+        RolandGarros.winPoint(Match.PLAYER2)
 
-        self.assertEqual(self.RolandGarros.getScore(self.RolandGarros.PLAYER2), 40)
+        self.assertEqual(RolandGarros.getScore(Match.PLAYER2), 40)
 
 
     def test_win_match(self):
-        john = Mock( {"getScore" : "15"} )
-        self.assertEqual(self.john.getScore(), 15)
+        '''
+        john  = Player("John")
+        john.getScore = Mock(return_value=30)
+        rafa  = Player("Rafa")
+        rafa.getScore = Mock(return_value=40)
+
+        RolandGarros = Match()
+        RolandGarros.addPlayer(john)
+        RolandGarros.addPlayer(rafa)
+
+        RolandGarros.winPoint(Match.PLAYER2)
+
+        self.assertEqual(RolandGarros.getWinner(), Match.PLAYER2)
+        '''
 
 if __name__ == '__main__':
     unittest.main()
