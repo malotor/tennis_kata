@@ -1,56 +1,61 @@
 class Match:
-    players = []
 
     PLAYER1 = 0
     PLAYER2 = 1
 
     scores = [ 0 , 15 , 30 , 40, 'adv', 'win']
 
-    winner = None
-
     def __init__(self, name):
         self.name = name
+        self.winner = None
+        self.players = []
 
     def addPlayer1(self,player):
-        self.players.insert( self.PLAYER1, player)
+        self.players.insert(Match.PLAYER1, player)
 
     def addPlayer2(self,player):
-        self.players.insert( self.PLAYER2, player)
+        self.players.insert(Match.PLAYER2, player)
 
     def countPlayers(self):
         return len(self.players)
 
-    def winPoint(self, player):
-        if (player == self.PLAYER1):
-            oponent = self.PLAYER2
+    def winPoint(self, playerIndex):
+        oponentIndex = int(not playerIndex)
+
+        player = self.getPlayer(playerIndex)
+        oponent = self.getPlayer(oponentIndex)
+
+        playerScore = self.getScore(playerIndex)
+        oponentScore = self.getScore(oponentIndex)
+
+        #need refactor
+        if playerScore == 40:
+            if oponentScore == 40:
+                #Win advacnce
+                player.setAdvance()
+            elif oponentScore == 'adv':
+                #Loose advance
+                oponent.setFourty()
+            else:
+                player.setWinScore()
+                self.setWinner(playerIndex)
         else:
-            oponent = self.PLAYER1
+            player.incrementScore()
 
-        playerScore = self.getScore(player)
-        openentScore = self.getScore(oponent)
+        if playerScore == 'adv':
+            player.setWinScore()
+            self.setWinner(playerIndex)
 
-        if (playerScore == 40 and  openentScore < 40):
-            self.winner = player
-            self.players[player].incrementScore()
-            self.players[player].incrementScore()
-        elif (playerScore == 'adv' and openentScore == 40):
-            self.winner = player
-            self.players[player].incrementScore()
-        #Get adv
-        elif (playerScore == 40 and  openentScore == 40):
-            self.players[player].incrementScore()
-        #Lose av
-        elif (playerScore == 40  and  openentScore == 'adv'):
-            self.players[oponent].decrementScore()
-        else:
-            self.players[player].incrementScore()
+    def getPlayer(self,playerIndex):
+        return self.players[playerIndex]
 
-    def getPlayer(self,player):
-        return self.players[player]
-
-    def getScore(self,player):
-        playerScore = self.players[player].getScore()
-        return self.scores[playerScore]
+    def getScore(self,playerIndex):
+        playerScore = self.players[playerIndex].getScore()
+        return Match.scores[playerScore]
 
     def getWinner(self):
         return self.winner
+    
+    def setWinner(self,player):
+        self.winner = player
+        self.players[player].setWinScore()
